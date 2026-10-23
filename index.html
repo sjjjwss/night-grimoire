@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#171918">
+  <meta name="description" content="세 가지 버전으로 진행하는 시계탑에 흐른 피의 개인용 밤 진행 도우미. 캐릭터 배치부터 밤 순서와 상태 기록까지.">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>밤의 서재 — 사회자 진행 도우미</title>
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./grimoire.css">
+  <link rel="stylesheet" href="./readability.css">
+  <link rel="stylesheet" href="./circle-ui.css">
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" class="svg-library" aria-hidden="true"><defs>
+    <symbol id="art-tower" viewBox="0 0 200 160"><circle cx="100" cy="64" r="45" fill="currentColor" opacity=".08"/><circle cx="100" cy="64" r="60" fill="none" stroke="currentColor" opacity=".15"/><path d="M65 150V67l10-8V45h9V33l16-23 16 23v12h9v14l10 8v83M57 150h86M76 150V81h48v69M82 45h36M75 59h50M71 70h58" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="100" cy="73" r="12" fill="#1b1d1c" stroke="currentColor"/><path d="M100 65v8l5 4M92 150v-19a8 8 0 0 1 16 0v19M86 104v-8m28 8v-8M98 33h4M30 116h21m100 0h21M36 125h14m100 0h14" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="m30 42 2-4 2 4-2 4m130 1 2-4 2 4-2 4m-19-25 1-3 1 3-1 3" fill="currentColor"/></symbol>
+    <symbol id="art-moon" viewBox="0 0 200 160"><circle cx="100" cy="74" r="53" fill="none" stroke="currentColor" opacity=".2"/><circle cx="100" cy="74" r="42" fill="currentColor" opacity=".08"/><path d="M114 30a43 43 0 1 0 25 74 37 37 0 0 1-25-74Z" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M38 146V98l12 8V86l14 14v46m72 0v-43l11-16 11 16v43M17 146h166M147 103v8m-97 6v9m21 20 10-16 19 6 20-11 10 21" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="m44 40 2-5 2 5-2 5m105 5 2-5 2 5-2 5m-14-27 1-3 1 3-1 3" fill="currentColor"/></symbol>
+    <symbol id="art-flower" viewBox="0 0 200 160"><circle cx="100" cy="72" r="57" fill="none" stroke="currentColor" opacity=".2"/><circle cx="100" cy="72" r="43" fill="currentColor" opacity=".06"/><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M100 77c-45-10-48-39-29-45 17-5 29 16 29 36 0-20 12-41 29-36 19 6 16 35-29 45Zm0 0c-48-4-63 24-47 34 15 10 37-7 47-24 10 17 32 34 47 24 16-10 1-38-47-34Z"/><path d="M100 80c-25 24-18 46 0 46s25-22 0-46Zm0 41v29m-1-12c-14-22-32-8-32-8s14 18 32 8Zm2 5c14-22 32-8 32-8s-14 18-32 8Z"/><circle cx="100" cy="78" r="7"/></g><path d="m37 58 2-5 2 5-2 5m119-9 2-5 2 5-2 5M100 9l2 5-2 5-2-5" fill="currentColor"/></symbol>
+  </defs></svg>
+  <div id="app"></div>
+  <div id="modal-root"></div>
+  <!-- Keep cached pre-update scripts from failing while the offline package updates. -->
+  <div id="privacy-root" hidden></div>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <noscript>이 앱을 사용하려면 브라우저에서 JavaScript를 허용해주세요.</noscript>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

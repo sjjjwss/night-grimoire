@@ -1,0 +1,585 @@
+/* Shared, legible storyteller UI. Loaded after the original stylesheets. */
+:root {
+  font-family: 'Noto Sans KR', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  --muted: #b5baae;
+}
+body { font-size: 16px; }
+.workspace, .main-content, .grimoire-workspace, .living-grimoire,
+.ability-heading-copy, .board-layout, .side-summary { min-width: 0; }
+h1, h2, h3, .brand-name, .summary-title, .action-role-name,
+.information-pair strong, .circle-center b {
+  font-family: 'Noto Sans KR', system-ui, sans-serif;
+  letter-spacing: -.025em;
+}
+h1, .intro h1 { font-size: clamp(26px, 3.3vw, 34px); line-height: 1.4; }
+h2 { font-size: 24px; line-height: 1.45; }
+h3 { font-size: 20px; line-height: 1.5; }
+button, input, select, textarea { font-size: 16px; }
+button, input, select, textarea, summary { touch-action: manipulation; }
+button:disabled { opacity: .5; }
+.button, .button.small, .text-button, .filter-button, .status-button,
+.segmented button, .picker-tabs .button, .board-controls > .button,
+.state-actions .button, .choice-heading .button {
+  min-height: 46px;
+  font-size: 16px;
+  line-height: 1.45;
+  padding: 10px 14px;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.button svg, .text-button svg, .segmented svg { width: 20px; height: 20px; }
+.icon-button { width: 46px; min-width: 46px; min-height: 46px; }
+.input, input.input, textarea, select, .life-result-row select {
+  min-height: 48px;
+  font-size: 16px;
+  padding: 11px 12px;
+}
+.input::placeholder, textarea::placeholder { color: #a1aa98; }
+.input-row, .split-fields { min-width: 0; }
+.input-row > *, .split-fields > * { min-width: 0; }
+.subtle, .muted-copy, .hint, .notice, .empty-state, .official,
+.official summary, .night-notes, .night-notes summary, .grimoire-guide,
+.sidebar-foot, .save-status, .breadcrumbs, .side-link .pill,
+.team-chip, .team-chip b, .count-copy p, .count-value small,
+.edition-tag, .edition-ko, .edition-description, .edition-bottom,
+.panel-heading strong, .summary-row, .record-row time,
+.check-row small, .information-card small, .state-summary-row small,
+.relationship-row, .relationship-row b, .relationship-row small,
+.queue-row small, .queue-list-title, .seat-label, .action-english,
+.effect-apply small, .state-actions, .state-actions > small,
+.target-toolbar .field-label small, .choice-placeholder, .legacy-value,
+.picker-caption, .rules-exceptions, .short-warning, .passive-note,
+.information-exceptions, .information-pair small,
+.information-pair > div > span, .impaired-explanation,
+.automatic-effect-hint, .impairment-callout .impairment-origin,
+.impairment-callout p, .execution-feedback, .other-day-deaths summary,
+.day-results .muted-copy, .selected-characters-button .change-hint {
+  font-size: 14px;
+  line-height: 1.65;
+}
+.intro p, .count-title, .section-head h2, .summary-row strong,
+.field-label, .target-toolbar .field-label, .choice-label, .truth-label,
+.record-row p, .check-row, .information-card, .state-summary-row,
+.queue-row strong, .ability-description, .instruction, .wake-facts > div > span,
+.ability-targets .subtle, .impairment-callout strong,
+.day-results .field-label, .day-results .answer-button {
+  font-size: 16px;
+  line-height: 1.65;
+}
+.section-head h2, .panel-heading strong, .field-label,
+.choice-label, .truth-label { font-weight: 600; }
+.intro p { max-width: 64ch; }
+.brand-sub, .sidebar-label, .side-quote, .bottom-note,
+.main-content > .eyebrow, .grimoire-title .eyebrow,
+.side-summary .panel-body > .eyebrow, .modal-content > .eyebrow { display: none; }
+.side-link { min-height: 48px; font-size: 16px; }
+.sidebar-foot { padding-top: 24px; }
+.summary-title, .grimoire-aside .summary-title { font-size: 20px; }
+.panel-heading { flex-wrap: wrap; gap: 10px; }
+.notice, .short-warning, .impairment-callout, .automatic-effect-hint {
+  padding: 14px;
+  overflow-wrap: anywhere;
+}
+.notice, .instruction, .ability-description { line-height: 1.8; }
+.notice { color: #e1c995; }
+.impairment-callout { border-left-width: 5px; }
+.impairment-callout strong { font-weight: 700; }
+.effect-chip, .status-list span { font-size: 14px; padding: 4px 8px; }
+summary { min-height: 44px; padding-top: 10px; padding-bottom: 10px; }
+.official summary, .night-notes summary, .rules-exceptions summary,
+.state-actions summary { min-height: 44px; font-size: 14px; }
+.state-actions > div { gap: 8px; }
+.count-panel { align-items: center; }
+.stepper { gap: 14px; flex-shrink: 0; }
+.stepper button { width: 46px; height: 46px; font-size: 25px; }
+.count-value { font-family: inherit; font-size: 32px; min-width: 48px; }
+.count-value small { margin-left: 3px; }
+.team-chip { padding: 7px 10px; }
+.steps, .setup-steps { display: flex; align-items: stretch; gap: 10px; flex-wrap: wrap; }
+.step, .setup-steps > * { font-size: 14px; gap: 8px; }
+.step span { min-width: 28px; width: 28px; height: 28px; font-size: 14px; }
+.step-line { align-self: center; width: 20px; }
+.edition-card h3 { font-size: 23px; }
+.edition-card .selection-circle { width: 24px; height: 24px; }
+.edition-card .selection-circle svg { width: 16px; height: 16px; }
+.edition-tag { max-width: calc(100% - 24px); }
+.grimoire-title { flex-wrap: wrap; }
+.grimoire-title h1 { font-size: 26px; }
+.night-progress { font-size: 14px; padding: 7px 12px; }
+.night-ribbon { gap: 8px; padding: 4px 0 16px; scroll-padding: 8px; }
+.ribbon-step { flex-basis: 104px; min-height: 116px; padding: 10px 6px; font-size: 14px; gap: 6px; }
+.ribbon-token { height: 58px; }
+.ribbon-token img { width: 58px; height: 58px; }
+.ribbon-token > svg { width: 36px; height: 36px; }
+.ribbon-token small { width: 24px; height: 24px; top: 0; right: -10px; font-size: 14px; }
+.ribbon-impairment { font-size: 14px; padding: 2px 8px; }
+.ribbon-step.completed:not(.active) { opacity: .75; }
+.ability-inspector { padding: 24px; }
+.ability-heading { gap: 14px; align-items: center; flex-wrap: wrap; }
+.inspector-token, .inspector-token img { width: 88px; height: 88px; }
+.inspector-token > svg { width: 48px; height: 48px; }
+.ability-heading-copy { flex: 1; min-width: 125px; }
+.ability-heading .eyebrow { display: flex; font-size: 16px; letter-spacing: 0; margin-bottom: 5px; }
+.ability-heading h2 { font-size: 26px; gap: 8px; }
+.ability-heading h2 small { font: inherit; font-size: 14px; color: var(--muted); }
+.ability-heading > .button { min-width: 44px; min-height: 44px; padding: 10px; }
+.ability-description { margin: 16px 0; }
+.truth-strip { flex-wrap: wrap; gap: 10px; padding: 14px; align-items: flex-start; }
+.truth-label, .choice-label { white-space: normal; }
+.normal-value { font-size: 18px; }
+.normal-value.numeric, .information-pair .numeric { font-size: 42px; font-family: inherit; }
+.information-pair { gap: 12px; }
+.information-pair strong, .delivered-information strong { font-size: 22px; }
+.normal-information, .delivered-information { padding: 14px; }
+.ability-choice { margin-top: 20px; }
+.choice-heading { flex-wrap: wrap; }
+.character-answer-row { align-items: flex-start; gap: 12px; }
+.character-answer-row > .choice-label { max-width: none; flex-basis: 100%; }
+.chosen-characters { gap: 10px; }
+.chosen-character, .selected-characters-button .chosen-character {
+  gap: 8px; padding: 7px 10px; font-size: 16px; flex-wrap: wrap;
+}
+.chosen-character img, .selected-characters-button .chosen-character img { width: 72px; height: 72px; }
+.selected-characters-button.button { padding: 10px; justify-content: flex-start; max-width: 100%; }
+.answer-button.button, .answer-buttons.compact .answer-button {
+  min-height: 48px; min-width: 48px; font-size: 18px; padding: 10px 16px;
+}
+.answer-buttons.compact .answer-button { font-size: 16px; }
+.answer-buttons { gap: 8px; }
+.normal-role-tokens { gap: 10px; }
+.character-tile, .normal-role-tokens .character-tile {
+  min-height: 130px; min-width: 0; flex-direction: column;
+  gap: 7px; padding: 12px 8px; font-size: 16px; line-height: 1.5;
+}
+.character-tile img, .normal-role-tokens .character-tile img { width: 80px; height: 80px; object-fit: contain; }
+.normal-role-tokens .character-tile { min-width: 106px; }
+.character-tile small { font-size: 14px; }
+.character-tile.selected::after { top: 5px; right: 9px; font-size: 20px; }
+.character-picker-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+.picker-tabs, .filter-row { gap: 8px; }
+.picker-selection { gap: 10px; padding: 12px; }
+.role-choice { padding: 14px; min-height: 106px; gap: 14px; }
+.role-choice img { width: 72px; height: 72px; object-fit: contain; }
+.role-choice strong { font-size: 18px; font-weight: 600; }
+.role-choice small, .role-choice .role-ability { font-size: 14px; line-height: 1.6; }
+.player-info img { width: 88px; height: 88px; object-fit: contain; }
+.bluff-list { gap: 12px; }
+.bluff-list .small-token, .bluff-card {
+  display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+  gap: 8px; min-width: 108px; padding: 12px; font-size: 16px;
+  text-align: center; line-height: 1.5; border: 1px solid var(--line); border-radius: 10px;
+}
+.bluff-list .small-token img, .bluff-card img { width: 88px; height: 88px; object-fit: contain; }
+.bluff-card strong { font-size: 18px; }
+.small-token { font-size: 14px; gap: 7px; padding: 7px 9px; }
+.small-token img { width: 40px; height: 40px; object-fit: contain; }
+.ability-targets { padding: 16px 24px; }
+.target-pills { gap: 8px; }
+.target-pill { min-height: 48px; padding: 8px 10px; font-size: 16px; gap: 8px; flex-wrap: wrap; }
+.target-pill img { width: 48px; height: 48px; }
+.target-pill b { font-family: inherit; font-size: 16px; }
+.target-button { font-size: 16px; min-height: 82px; padding: 12px 8px; }
+.target-button strong { font-family: inherit; font-size: 18px; }
+.grimoire-board-heading { padding: 16px 20px 8px; font-size: 14px; flex-wrap: wrap; gap: 12px; }
+.board-controls { flex-wrap: wrap; gap: 8px; }
+.segmented button { min-width: 44px; }
+.seat-grid, .seat-grid.interactive-board {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  width: 100%; max-width: none; padding: 16px; gap: 12px; margin: 0;
+  aspect-ratio: auto;
+}
+.seat-grid::before, .seat-grid.interactive-board::before { display: none; }
+.seat-grid .seat-card, .seat-grid.interactive-board[style] .seat-card,
+.seat-grid.interactive-board .seat-card {
+  position: relative; left: auto; top: auto; transform: none; width: 100%;
+  min-height: 190px; border-radius: 10px; padding: 30px 10px 14px;
+  gap: 6px; border: 1px solid #515a47; background: #252b22;
+}
+.seat-grid .seat-card.is-active, .seat-grid.interactive-board .seat-card.is-active {
+  transform: none; border: 2px solid #e0c18e; background: #39382b;
+  box-shadow: 0 0 0 2px #e0c18e20;
+}
+.seat-grid .seat-card.is-target { border-color: #d5ba88; background: #373729; }
+.seat-grid .seat-card img, .seat-grid.interactive-board .seat-card img,
+.seat-grid.interactive-board[style] .seat-card img { width: 80px; height: 80px; order: 1; }
+.seat-grid .seat-name, .seat-grid.interactive-board .seat-name {
+  order: 2; font-size: 18px; color: var(--text); font-weight: 700;
+  white-space: normal; overflow-wrap: anywhere; text-overflow: clip; line-height: 1.4;
+}
+.seat-grid .seat-role, .seat-grid.interactive-board .seat-role,
+.seat-grid.interactive-board[style] .seat-role {
+  order: 3; font-size: 16px; color: #c6ceb9; white-space: normal;
+  overflow-wrap: anywhere; text-overflow: clip; line-height: 1.4;
+}
+.seat-grid .seat-number, .seat-grid.interactive-board .seat-number { top: 7px; left: 10px; font-size: 14px; color: #b5beab; }
+.seat-grid .seat-effect, .seat-grid.interactive-board .seat-effect {
+  position: static; transform: none; order: 4; font-size: 14px; white-space: normal; padding: 3px 8px;
+}
+.seat-grid .incoming-mark { position: static; order: 5; font-size: 14px; white-space: normal; padding: 3px 7px; }
+.seat-grid .target-order { right: 8px; top: 8px; width: 28px; height: 28px; font-size: 16px; }
+.seat-grid .seat-card .death-mark {
+  position: static; order: 4; min-width: 52px; padding: 3px 8px; font-size: 14px;
+}
+.seat-card.dead { opacity: 1; background-color: #30262a; border-color: #76575d; }
+.seat-card.dead img { opacity: .6; filter: grayscale(.45); }
+.seat-card.dead .seat-name { color: #e4c2c8; }
+.seat-grid .seat-plus { font-size: 40px; }
+.seat-grid .seat-card.empty { border-style: dashed; }
+.grimoire-tools { padding: 20px 24px; }
+.grimoire-tools .action-footer .primary { min-height: 50px; padding: 12px 18px; font-size: 16px; }
+.action-footer, .grimoire-tools .action-footer { flex-wrap: wrap; gap: 10px; }
+.target-toolbar { flex-wrap: wrap; align-items: flex-start; }
+.relationship-row { gap: 10px; padding: 14px 0; grid-template-columns: minmax(0,1fr) 18px minmax(0,1fr); }
+.state-summary-row { min-height: 64px; padding: 12px 0; }
+.state-summary-row > b { font-family: inherit; font-size: 20px; }
+.check-row { gap: 12px; flex-wrap: wrap; }
+.check-row img, .information-card img { width: 64px; height: 64px; object-fit: contain; flex-shrink: 0; }
+.check-row .button { font-size: 16px; }
+.life-result-row { grid-template-columns: 64px minmax(0,1fr) minmax(140px,180px); gap: 12px; padding: 14px 0; }
+.life-result-row img { width: 64px; height: 64px; }
+.life-result-row b { font-size: 16px; }
+.life-result-row small { font-size: 14px; line-height: 1.5; }
+.modal-head h2 { font-size: 24px; }
+.modal-content { font-size: 16px; }
+.modal-foot { flex-wrap: wrap; }
+#toast { font-size: 16px; padding: 14px 18px; }
+
+/* Select a roster once, then assign it using names in seating order. */
+.role-roster { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 12px; }
+.roster-card {
+  position: relative; display: flex; flex-direction: column; align-items: center;
+  justify-content: flex-start; gap: 8px; min-height: 160px; min-width: 0;
+  padding: 14px 10px; border: 1px solid var(--line); border-radius: 10px;
+  background: var(--panel); font-size: 16px; text-align: center; line-height: 1.5;
+}
+.roster-card img { width: 88px; height: 88px; object-fit: contain; }
+.roster-card strong, .roster-card b { font-size: 18px; overflow-wrap: anywhere; }
+.roster-card small { display: block; font-size: 14px; line-height: 1.5; color: var(--muted); }
+.roster-card.selected, .roster-card[aria-pressed="true"] { border-color: var(--gold); background: #3b3628; box-shadow: inset 0 0 0 1px var(--gold); }
+.roster-composition { display: flex; flex-wrap: wrap; gap: 8px; padding: 14px 0; }
+.roster-composition > * { font-size: 16px; line-height: 1.6; }
+.composition-warning { color: #ffd2b7; background: #53352b; border: 1px solid #b58162; border-radius: 8px; padding: 12px 14px; font-size: 16px; line-height: 1.7; margin: 12px 0; }
+.composition-warning:empty { display: none; }
+.assignment-list { display: grid; gap: 12px; margin-top: 16px; }
+.assignment-row {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 16px;
+  min-width: 0; border: 1px solid var(--line); border-radius: 10px; background: var(--panel);
+}
+.assignment-row > * { min-width: 0; }
+.assignment-row > img, .assignment-row .assignment-token img { width: 80px; height: 80px; object-fit: contain; }
+.assignment-row > input, .assignment-row > select { flex: 1 1 180px; }
+.assignment-row .assignment-name { flex: 1 1 180px; }
+.assignment-row .assignment-role { flex: 1 1 220px; }
+.assignment-row .assignment-order, .assignment-row .assignment-move { display: flex; gap: 8px; flex-shrink: 0; }
+.assignment-row .assignment-number { font-size: 16px; font-weight: 700; }
+.assignment-row .field-label { margin: 0 0 7px; }
+.assignment-row button { min-height: 46px; }
+
+/* Step-by-step evil-team information and dead-player vote tracking. */
+.info-steps { display: grid; gap: 16px; margin-top: 18px; }
+.info-step { min-width: 0; border: 1px solid #505b45; border-radius: 10px; padding: 18px; background: #1a2019; }
+.info-step.is-current { border-color: var(--gold); box-shadow: inset 4px 0 var(--gold); background: #2c3023; }
+.info-step.is-done { border-color: #627c50; }
+.info-step > h3, .info-step h4 { font: 700 20px/1.5 'Noto Sans KR',system-ui,sans-serif; margin: 0 0 10px; }
+.info-step p { font-size: 16px; line-height: 1.8; }
+.info-step small { font-size: 14px; line-height: 1.6; }
+.info-step > .button { margin-top: 14px; }
+.info-people { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; margin: 14px 0; }
+.person-card { display: flex; flex-direction: column; align-items: center; min-width: 0; gap: 7px; border: 1px solid var(--line); border-radius: 10px; padding: 14px 10px; text-align: center; background: #272d23; }
+.person-card img { width: 88px; height: 88px; object-fit: contain; }
+.person-card strong, .person-card b { font-size: 20px; line-height: 1.45; overflow-wrap: anywhere; }
+.person-card span { font-size: 16px; line-height: 1.5; overflow-wrap: anywhere; }
+.person-card small { color: var(--muted); }
+.vote-summary { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; margin: 14px 0; font-size: 16px; line-height: 1.65; }
+.vote-summary strong { font-size: 20px; color: var(--text); }
+.vote-list { display: grid; gap: 10px; margin: 14px 0; }
+.vote-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; min-width: 0; padding: 14px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); }
+.vote-row img { width: 64px; height: 64px; object-fit: contain; }
+.vote-row > div { min-width: 0; }
+.vote-row strong, .vote-row b { font-size: 18px; line-height: 1.5; overflow-wrap: anywhere; }
+.vote-row small { display: block; font-size: 14px; color: var(--muted); }
+.vote-row > .button { margin-left: auto; }
+.vote-badge { display: inline-flex; align-items: center; padding: 4px 8px; border: 1px solid #8ba779; border-radius: 5px; background: #31432a; color: #dceecb; font-size: 14px; line-height: 1.5; }
+.vote-badge.used, .vote-badge.is-used { color: #d6c2c5; background: #402c32; border-color: #98767f; }
+.seat-grid .vote-badge { order: 5; }
+
+@media (max-width: 1100px) {
+  .grimoire-workspace { grid-template-columns: minmax(0,1fr) 260px; }
+  .board-layout { grid-template-columns: minmax(0,1fr) 270px; }
+  .role-roster { grid-template-columns: repeat(3,minmax(0,1fr)); }
+}
+@media (max-width: 850px) {
+  .main-content { padding: 26px 20px 124px; }
+  .grimoire-main { max-width: 760px; }
+  .grimoire-workspace, .board-layout { grid-template-columns: minmax(0,1fr); }
+  .grimoire-aside { grid-template-columns: minmax(0,1fr); }
+  .mobile-nav { padding: 8px 10px calc(8px + env(safe-area-inset-bottom)); gap: 8px; }
+  .mobile-nav button { min-width: 0; min-height: 54px; flex: 1; font-size: 14px; gap: 4px; }
+  .mobile-nav button svg { width: 23px; height: 23px; }
+  .topbar { min-height: 72px; height: auto; padding: 12px 20px; }
+  .mobile-brand .brand-name { font-size: 20px; }
+  .info-people { grid-template-columns: repeat(2,minmax(0,1fr)); }
+}
+@media (max-width: 600px) {
+  .main-content, .grimoire-main { padding: 22px 12px 124px; }
+  .topbar { padding: 10px 12px; gap: 8px; }
+  .top-actions { gap: 6px; }
+  .mobile-brand .brand-mark { display: none; }
+  .mobile-brand .brand-name { font-size: 19px; white-space: nowrap; }
+  .save-status { font-size: 14px; gap: 4px; }
+  .intro { margin-bottom: 22px; }
+  .intro p { font-size: 16px; max-width: none; }
+  .intro-icon { display: none; }
+  .section-head { flex-wrap: wrap; align-items: flex-start; gap: 8px; }
+  .section-head h2 { font-size: 18px; }
+  .section-head .subtle { font-size: 14px; }
+  .steps, .setup-steps { margin: 22px 0; gap: 8px; }
+  .step { font-size: 14px; }
+  .step-line { width: 10px; }
+  .count-panel { flex-wrap: wrap; padding: 16px; gap: 16px; }
+  .count-copy { flex: 1 1 130px; }
+  .stepper { margin-left: auto; }
+  .count-title { font-size: 18px; }
+  .count-copy p { font-size: 14px; }
+  .team-chip { font-size: 14px; padding: 7px 9px; }
+  .team-chip b { font-size: 16px; }
+  .edition-card { padding: 18px 14px; grid-template-columns: 76px minmax(0,1fr); column-gap: 12px; }
+  .edition-art { width: 76px; height: 120px; }
+  .edition-card h3 { font-size: 20px; padding-right: 12px; }
+  .edition-ko, .edition-description, .edition-tag { font-size: 14px; }
+  .edition-card .selection-circle { top: 12px; right: 12px; }
+  .footer-action > .button { min-height: 52px; font-size: 16px; }
+  .footer-action .hint { font-size: 14px; }
+  .panel-heading, .panel-body { padding: 16px; }
+  .grimoire-title { padding: 0 2px; margin-bottom: 16px; }
+  .grimoire-title h1 { font-size: 24px; }
+  .night-progress { font-size: 14px; }
+  .ribbon-step { flex-basis: 96px; min-height: 112px; font-size: 14px; }
+  .ribbon-token, .ribbon-token img { width: 56px; height: 56px; }
+  .ability-inspector { padding: 18px 16px; }
+  .ability-heading { gap: 12px; }
+  .inspector-token, .inspector-token img { width: 80px; height: 80px; }
+  .ability-heading h2 { font-size: 24px; }
+  .ability-heading .eyebrow { font-size: 16px; }
+  .ability-heading h2 small { font-size: 14px; }
+  .ability-description { font-size: 16px; }
+  .truth-strip { padding: 12px; gap: 10px; }
+  .truth-label, .choice-label { font-size: 16px; }
+  .normal-value { font-size: 18px; }
+  .information-pair { grid-template-columns: minmax(0,1fr); }
+  .character-picker-grid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; }
+  .character-tile, .normal-role-tokens .character-tile { min-height: 132px; font-size: 16px; }
+  .character-tile img, .normal-role-tokens .character-tile img { width: 80px; height: 80px; }
+  .chosen-character, .selected-characters-button .chosen-character { font-size: 16px; }
+  .chosen-character img, .selected-characters-button .chosen-character img { width: 72px; height: 72px; }
+  .character-answer-row > .choice-label { max-width: none; }
+  .role-choice { padding: 14px 12px; gap: 12px; }
+  .role-choice img { width: 72px; height: 72px; }
+  .role-choice strong { font-size: 18px; }
+  .role-choice small, .role-choice .role-ability { font-size: 14px; }
+  .ability-targets { padding: 16px; }
+  .ability-targets .subtle { font-size: 16px; }
+  .grimoire-board-heading { padding: 16px 12px 8px; font-size: 14px; }
+  .board-controls { width: 100%; justify-content: space-between; }
+  .seat-grid, .seat-grid.interactive-board { grid-template-columns: repeat(2,minmax(0,1fr)); padding: 12px; gap: 10px; }
+  .seat-grid .seat-card, .seat-grid.interactive-board .seat-card,
+  .seat-grid.interactive-board[style] .seat-card { min-height: 190px; padding: 30px 8px 14px; }
+  .seat-grid .seat-card img, .seat-grid.interactive-board .seat-card img,
+  .seat-grid.interactive-board[style] .seat-card img { width: 80px; height: 80px; }
+  .seat-grid .seat-role, .seat-grid.interactive-board .seat-role,
+  .seat-grid.interactive-board[style] .seat-role { font-size: 16px; }
+  .seat-grid .seat-name, .seat-grid.interactive-board .seat-name { font-size: 18px; }
+  .grimoire-tools { padding: 18px 16px; }
+  .action-footer .button, .grimoire-tools .action-footer .button { font-size: 16px; min-height: 48px; padding: 11px 14px; }
+  .grimoire-tools .action-footer .primary { flex: 1 1 150px; }
+  .grimoire-aside .panel-heading, .grimoire-aside .panel-body { padding: 16px; }
+  .relationship-row, .relationship-row b, .relationship-row small { font-size: 14px; }
+  .state-summary-row { font-size: 16px; }
+  .state-summary-row small { font-size: 14px; }
+  .life-result-row { grid-template-columns: 64px minmax(0,1fr); gap: 10px; }
+  .life-result-row img { width: 64px; height: 64px; }
+  .life-result-row select { grid-column: 1/-1; font-size: 16px; }
+  .life-result-row b { font-size: 16px; }
+  .day-results .answer-button { font-size: 16px; }
+  .day-results .muted-copy { font-size: 14px; }
+  .target-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .info-team { grid-template-columns: minmax(0,1fr); }
+  .information-card { padding: 14px; gap: 12px; font-size: 16px; }
+  .information-card img { width: 72px; height: 72px; }
+  .information-card small { font-size: 14px; }
+  .modal-head { padding: 18px 16px; }
+  .modal-head h2 { font-size: 22px; }
+  .modal-content { padding: 18px 16px max(18px, env(safe-area-inset-bottom)); }
+  .modal-foot { padding: 14px 16px calc(14px + env(safe-area-inset-bottom)); }
+  .modal-foot .button { flex: 1 1 auto; }
+  .role-search { top: -18px; }
+  .split-fields { grid-template-columns: minmax(0,1fr); gap: 12px; }
+  .record-row p { font-size: 16px; }
+  .check-row { font-size: 16px; padding: 14px; }
+  .check-row .button { font-size: 16px; padding: 10px 12px; }
+  .role-roster { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; }
+  .roster-card { min-height: 162px; padding: 14px 8px; }
+  .roster-card img { width: 80px; height: 80px; }
+  .roster-card strong, .roster-card b { font-size: 18px; }
+  .assignment-row { gap: 10px; padding: 14px; }
+  .assignment-row > input, .assignment-row > select,
+  .assignment-row .assignment-name, .assignment-row .assignment-role { flex-basis: 100%; }
+  .assignment-row .assignment-order, .assignment-row .assignment-move { margin-left: auto; }
+  .info-step { padding: 16px 12px; }
+  .info-people { gap: 10px; }
+  .person-card { padding: 12px 8px; }
+  .person-card img { width: 80px; height: 80px; }
+  .person-card strong, .person-card b { font-size: 18px; }
+  .bluff-list { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; }
+  .bluff-list .small-token, .bluff-card { min-width: 0; padding: 12px 8px; }
+  .bluff-list .small-token img, .bluff-card img { width: 80px; height: 80px; }
+  .vote-row { padding: 12px; gap: 10px; }
+  .vote-row > .button { flex: 1 1 100%; margin-left: 0; }
+}
+@media (max-width: 360px) {
+  .mobile-brand .brand-name { font-size: 18px; }
+  .top-actions { gap: 4px; }
+  .save-status { font-size: 14px; }
+  .save-status::before { display: none; }
+  .topbar .icon-button { width: 44px; min-width: 44px; min-height: 44px; }
+  .step-line { display: none; }
+  .steps .step { flex: 1 1 130px; }
+  .ability-heading-copy { min-width: 110px; }
+  .ability-heading > .button { margin-left: auto; }
+  .seat-grid, .seat-grid.interactive-board { padding: 10px; gap: 8px; }
+  .seat-grid .seat-card img, .seat-grid.interactive-board .seat-card img,
+  .seat-grid.interactive-board[style] .seat-card img { width: 72px; height: 72px; }
+  .normal-role-tokens .character-tile { min-width: 98px; }
+  .info-people { grid-template-columns: minmax(0,1fr); }
+  .person-card { flex-direction: row; flex-wrap: wrap; text-align: left; justify-content: flex-start; gap: 10px; }
+  .person-card img { width: 80px; height: 80px; }
+}
+
+/* Concrete setup and guided-information markup. */
+.role-roster { margin-top: 18px; }
+.roster-card > span { font-size: 14px; color: var(--gold); }
+.roster-card > small { text-align: left; }
+.roster-composition .composition-warning,
+.roster-composition .composition-ok { flex-basis: 100%; margin: 4px 0; }
+.composition-ok { font-size: 16px; color: #c3dda9; }
+.bulk-names { padding: 12px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.bulk-names summary { font-size: 16px; font-weight: 600; }
+.bulk-names > .button { margin-top: 10px; }
+.assignment-identity { display: flex; align-items: center; flex: 1 1 200px; gap: 12px; }
+.assignment-identity label { display: block; min-width: 0; flex: 1; }
+.assignment-identity .seat-order { display: grid; place-items: center; width: 30px; height: 30px; flex-shrink: 0; border-radius: 50%; background: #3e4635; color: #dce7d0; font-size: 16px; font-weight: 700; }
+.assignment-character.button { display: flex; flex: 1 1 210px; align-items: center; justify-content: flex-start; gap: 12px; padding: 12px; min-height: 104px; }
+.assignment-character img { width: 80px; height: 80px; object-fit: contain; flex-shrink: 0; }
+.assignment-character span { font-size: 18px; font-weight: 600; overflow-wrap: anywhere; }
+.assignment-order .button { min-width: 46px; min-height: 46px; font-size: 22px; }
+.assignment-shown { flex-basis: 100%; }
+.assignment-shown .button { text-align: left; justify-content: flex-start; }
+.info-step-list { display: flex; flex-wrap: wrap; list-style: none; gap: 8px; margin: 0; padding: 0; }
+.info-step-list .info-step { display: flex; align-items: center; flex: 1 1 145px; gap: 8px; min-height: 60px; padding: 10px; font-size: 14px; line-height: 1.5; }
+.info-step-list .info-step > span { display: grid; place-items: center; width: 26px; height: 26px; flex-shrink: 0; border-radius: 50%; background: #3f4835; color: #e0e8d7; font-size: 14px; }
+.info-step-list .info-step.is-current > span { background: var(--gold); color: #20231c; font-weight: 700; }
+.info-step-list .info-step.is-done > span { background: #526646; }
+.info-current { min-width: 0; padding-top: 4px; }
+.info-current > .field-label { margin-top: 0; }
+.info-current > h3 { font-size: 22px; margin-bottom: 10px; }
+.info-current > p { font-size: 18px; line-height: 1.8; }
+.person-card > div { display: grid; gap: 5px; min-width: 0; }
+.person-card > div > strong, .person-card > div > span { display: block; }
+.night-quick-actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 18px; }
+.night-quick-actions .day-results-open { margin-bottom: 0; }
+.setup-bluffs { margin-top: 20px; }
+.setup-bluffs h2 { margin-bottom: 10px; }
+.bluff-cards { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 12px; margin: 16px 0; }
+.vote-list { list-style: none; padding: 0; }
+.vote-person { display: grid; gap: 4px; flex: 1 1 150px; }
+.vote-person > span { font-size: 16px; line-height: 1.5; }
+.vote-person .vote-state, .vote-living-note { font-size: 14px; line-height: 1.6; color: #c8ddb8; }
+.vote-row.ghost-available { border-color: #8c9062; }
+.vote-row.ghost-used { border-color: #8b646a; background: #30262a; }
+.vote-row.ghost-used .vote-state { color: #e6b9bf; }
+.vote-living-note { flex-basis: 100%; }
+@media (max-width: 600px) {
+  .assignment-row { display: grid; grid-template-columns: minmax(0,1fr) 100px; align-items: center; }
+  .assignment-identity { grid-column: 1/-1; width: 100%; }
+  .assignment-character.button { flex-direction: column; justify-content: center; padding: 12px 8px; gap: 6px; min-height: 130px; }
+  .assignment-character img { width: 72px; height: 72px; }
+  .assignment-row .assignment-order { gap: 8px; margin-left: 0; justify-content: flex-end; }
+  .assignment-order .button { width: 46px; }
+  .assignment-shown { grid-column: 1/-1; }
+  .info-step-list { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .info-step-list .info-step { min-width: 0; padding: 10px 8px; font-size: 14px; gap: 6px; }
+  .night-quick-actions > .button { flex: 1 1 145px; }
+  .bluff-cards { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; }
+}
+/* Instructions and controls stay within reach while selecting people. */
+.storyteller-steps { margin:18px 0; padding:18px; border:1px solid #897b5d; border-radius:10px; background:#c2ac840b; }
+.storyteller-steps h3 { font-size:19px; color:#e7d8b9; margin-bottom:12px; }
+.storyteller-steps ol { margin:0; padding-left:25px; }
+.storyteller-steps li { padding-left:4px; font-size:17px; line-height:1.8; }
+.storyteller-steps li + li { margin-top:12px; }
+.storyteller-steps li::marker { color:#e7d8b9; font-weight:700; }
+.ability-rule-details { margin:12px 0; color:var(--muted); }
+.ability-rule-details summary { min-height:44px; padding:10px 0; cursor:pointer; }
+.ability-rule-details p { font-size:16px; line-height:1.8; }
+.vote-badge.ghost-used { color:#efd0d7; background:#512f39; border-color:#b18894; }
+.vote-badge.ghost-available { color:#f3dbad; background:#4b3c25; border-color:#b59b6d; }
+@media (max-width:600px) {
+.grimoire-tools .action-footer { position:fixed; left:14px; right:14px; bottom:calc(73px + env(safe-area-inset-bottom)); z-index:20; background:#20241df5; padding:10px; margin:0; border:1px solid #5d6651; border-radius:10px; box-shadow:0 4px 20px #0008; flex-wrap:nowrap; }
+.grimoire-tools .action-footer .button { min-width:0; }
+.grimoire-main { padding-bottom:180px; }
+.storyteller-steps { padding:15px; }
+}
+.compact-guide { padding: 9px 12px; margin: 10px 0; }
+.compact-guide > p { font-size: 16px; line-height: 1.5; margin: 0; font-weight: 600; }
+.compact-guide details { margin-top: 4px; }
+.compact-guide summary { font-size: 14px; color: var(--muted); cursor: pointer; }
+.compact-guide details ol { margin: 8px 0 0; }
+.circle-board, .circle-board.interactive-board { width: 100%; max-width: 660px; height: max(520px, calc(var(--seat-count) * 42px)); aspect-ratio: auto; margin: 12px auto; overflow: visible; }
+.circle-board .seat-card, .circle-board.interactive-board .seat-card { width: 96px; min-height: 110px; padding: 4px; border-radius: 16px; touch-action: none; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; transition: background .15s; }
+.circle-board .seat-card img, .circle-board.interactive-board[style] .seat-card img { width: 62px; height: 62px; pointer-events: none; }
+.circle-board .seat-role, .circle-board.interactive-board[style] .seat-role { font-size: 13px; line-height: 1.25; }
+.circle-board .seat-name, .circle-board.interactive-board .seat-name { font-size: 15px; font-weight: 700; line-height: 1.3; max-width: 100%; overflow-wrap: anywhere; }
+.circle-board .seat-number { display: none; }
+.circle-board .seat-card.is-active { z-index: 5; }
+.circle-board .seat-card .vote-badge { position: static; margin: 3px 0 0; font-size: 11px; padding: 1px 4px; }
+.circle-board .seat-effect { font-size: 12px; top: 1px; }
+.circle-board .seat-card .death-mark { top: 28px; font-size: 13px; }
+.circle-board .seat-card.being-moved { z-index: 10; outline: 2px solid var(--gold); background: #272d24; transform: translate(-50%,-50%) scale(1.08); box-shadow: 0 5px 24px #0008; }
+.circle-board.moving-seat .relation-lines { opacity: .15; }
+.layout-hint { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 8px 16px; font-size: 13px; color: var(--muted); }
+.layout-arrows { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 16px 0; }
+.setup-person-options, .mechanic-people { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0; }
+.setup-person-options .button, .mechanic-people .button { justify-content: flex-start; gap: 8px; font-size: 16px; }
+.setup-person-options img, .mechanic-people img { width: 44px; height: 44px; object-fit: contain; }
+.setup-person-options small { display: block; font-size: 13px; color: var(--muted); }
+.setup-person-options .selected, .mechanic-people .selected { border-color: var(--gold); background: #c2ac8429; }
+.mechanic-choice { margin: 10px 0; }
+.mechanic-applied { border-left: 3px solid #a9bb83; padding: 9px 12px; font-size: 16px; color: #d8e5bd; }
+.change-line { margin: 10px 0; padding: 10px; background: #c2ac8415; font-size: 17px; border-radius: 8px; }
+.setup-prerequisites { margin: 18px 0; }
+.impairment-callout p { display: none; }
+@media(max-width:600px){
+ .circle-board, .circle-board.interactive-board { height: max(500px, calc(var(--seat-count) * 48px)); }
+ .circle-board .seat-card, .circle-board.interactive-board[style] .seat-card { width: 80px; min-height: 105px; }
+ .circle-board .seat-card img, .circle-board.interactive-board[style] .seat-card img { width: 56px; height: 56px; }
+ .circle-board .seat-name, .circle-board.interactive-board .seat-name { font-size: 14px; }
+ .circle-board .seat-role, .circle-board.interactive-board[style] .seat-role { font-size: 12px; }
+ .circle-board .seat-card.is-active { transform: translate(-50%,-50%) scale(1.08); }
+ .layout-hint { padding: 8px; font-size: 12px; flex-wrap: wrap; }
+ .storyteller-inspector { padding: 12px; }
+ .compact-guide > p { font-size: 16px; }
+ .compact-guide details ol { font-size: 16px; }
+}
+.night-ribbon { padding: 2px 0 8px; margin: 8px 0; }
+.night-ribbon .ribbon-step { min-height: 86px; padding: 6px 4px; font-size: 14px; }
+.night-ribbon .ribbon-token, .night-ribbon .ribbon-token img { width: 48px; height: 48px; }
+.compact-guide details summary { min-height: 24px; padding: 0; line-height: 24px; }
+.storyteller-inspector .ability-rule-details { margin: 3px 0; }
+.storyteller-inspector .ability-rule-details summary { min-height: 24px; padding: 0; font-size: 14px; line-height: 24px; }
+.ability-targets { padding: 8px 14px; }
+.ability-targets .target-pills:has(>.subtle:only-child) { display: none; }
+.grimoire-board-heading { padding: 6px 12px; min-height: 0; }
+.grimoire-board-heading > span { display: none; }
+.grimoire-board-heading .board-controls { width: 100%; justify-content: space-between; }

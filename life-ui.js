@@ -1,0 +1,20 @@
+import { ROLES } from './data.js';
+import { appearsDead, executionDeaths } from './life.js';
+import { effectiveStatuses } from './effects.js';
+const roles=Object.fromEntries(ROLES.map(r=>[r.id,r]));
+export function renderLifeSelect(state,p){
+  const value=p.alive?'alive':p.diedNight===state.night?p.deathCause==='demon'?'dead-demon':'dead-tonight':p.diedBeforeNight===state.night?p.deathCause==='execution'?'dead-execution':'dead-day':'dead-earlier';
+  return '<select data-field="player-alive" aria-label="생존 여부">'+[['alive','생존'],['dead-demon','이번 밤 악마에게 사망'],['dead-tonight','이번 밤 기타 사망'],['dead-execution','지난 낮 처형 사망'],['dead-day','지난 낮 기타 사망'],['dead-earlier','이전 사망']].map(([v,label])=>'<option value="'+v+'" '+(value===v?'selected':'')+'>'+label+'</option>').join('')+'</select>';
+}
+
+export function renderDayResults(state,{token,esc,button}){
+  const execution=state.day?.night===state.night?state.day.execution:null;
+  return '<section class="day-results panel"><div class="panel-heading"><strong>지난 낮의 처형 · 사망</strong></div><div class="panel-body">'+button('day-ability','지목·투표·낮 능력 기록','ghost')+'<p class="muted-copy">투표 집계 없이 결과만 기록합니다. 장의사는 처형으로 사망한 사람이 있을 때만 깨어납니다.</p><label class="field-label" for="execution-player">투표·능력으로 처형된 사람</label><select id="execution-player" class="input" data-field="execution-player" aria-label="처형된 사람"><option value="">처형 없음</option>'+state.players.filter(p=>p.role).map(p=>'<option value="'+p.id+'" '+(execution?.playerId===p.id?'selected':'')+'>'+p.seat+'번 '+esc(roles[p.role]?.ko)+' · '+esc(p.name||p.seat+'번 참가자')+(appearsDead(p)?' (사망 표시)':'')+'</option>').join('')+'</select>'+(execution?'<span class="field-label">처형 결과</span><div class="answer-buttons">'+[['died','사망'],['survived','생존'],['already-dead','이미 사망'],...(state.players.find(p=>p.id===execution.playerId)?.role==='zombuul'?[['registers-dead','사망 표시 · 실제 생존']]:[])].map(([outcome,name])=>button('execution-outcome',name,'answer-button '+(execution.outcome===outcome?'selected':''),'data-outcome="'+outcome+'" aria-pressed="'+(execution.outcome===outcome)+'"')).join('')+'</div>':'')+'<div class="execution-feedback">'+(executionDeaths(state).length?'장의사 기상 · 처형 사망 캐릭터를 표시합니다.':'처형 사망 없음 · 장의사 기상 없음')+'</div><details class="other-day-deaths"><summary>처형 외 낮 사망 기록</summary><p class="subtle">처단자·마녀·땜장이 등으로 낮에 죽은 사람입니다. 장의사 정보에는 포함되지 않습니다.</p><select class="input" data-field="other-day-death" aria-label="처형 외 낮 사망자"><option value="">사망자 선택</option>'+state.players.filter(p=>p.alive&&!appearsDead(p)).map(p=>'<option value="'+p.id+'">'+p.seat+'번 '+esc(roles[p.role]?.ko)+'</option>').join('')+'</select></details></div></section>';
+}
+export function initialLifeChoices(state,q,action,plan){
+  if(action.lifeResults)return {...action.lifeResults};
+  return Object.fromEntries(state.players.map(p=>[p.id,plan.outcomes?.[p.id]||(plan.revivals.includes(p.id)?'alive':plan.deaths.includes(p.id)?p.role==='zombuul'&&q.roleId!=='assassin'&&!appearsDead(p)&&!effectiveStatuses(state,p).some(s=>/중독|취함/.test(s))?'registers-dead':'died':'unchanged')]));
+}
+export function renderLifeResults(state,q,plan,choices,{token,esc}){
+  return '<p class="muted-copy">'+esc(roles[q.roleId]?.ko)+'의 실제 결과를 확인하세요. 완료하면 사망·부활 표시와 이후 밤 순서에 반영됩니다.</p>'+plan.warnings.map(w=>'<div class="notice sheet-notice">'+esc(w)+'</div>').join('')+'<div class="life-result-list">'+state.players.filter(p=>p.role).map(p=>'<label class="life-result-row">'+token(p.role)+'<span><b>'+p.seat+'번 '+esc(roles[p.role]?.ko)+'</b><small>'+(!p.alive?'현재 사망':appearsDead(p)?'사망 표시 · 실제 생존':'현재 생존')+'</small></span><select class="input" data-field="life-result" data-player="'+p.id+'" aria-label="'+p.seat+'번 사망 결과">'+[['unchanged','변경 없음'],['died','사망'],['alive',p.alive?'생존':'부활'],...(p.role==='zombuul'?[['registers-dead','사망 표시 · 실제 생존']]:[])].map(([value,name])=>'<option value="'+value+'" '+(choices[p.id]===value?'selected':'')+'>'+name+'</option>').join('')+'</select></label>').join('')+'</div><p class="subtle">보호·사망 대체·부활 같은 판정에 맞춰 조정할 수 있습니다. 낮 처형 사망과 밤 사망은 따로 기록됩니다.</p>';
+}
